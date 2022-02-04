@@ -237,7 +237,8 @@ foreach ($vhd in $vhdImages)
 {
     Write-Host -ForegroundColor Yellow "============ Mounting VHD Image"
     Write-Host ""
-    .\arsenal\aim_cli.exe /mount /readonly /filename=$vhd /provider=DiscUtils /background
+    $DiffFile = "Evidence\$($vhd.basename)\$($vhd).diff"
+    .\arsenal\aim_cli.exe /mount /filename=$vhd /provider=DiscUtils /writeoverlay=$DiffFile /autodelete /background
 }
 :vhd while($true) 
     {
